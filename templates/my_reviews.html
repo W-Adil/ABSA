@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}My Reviews{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">My Reviews</h1>
+    <div class="row">
+        {% for review in reviews %}
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ review.product_name }}</h5>
+                    <p class="card-text">{{ review.review_text }}</p>
+                    
+                    <!-- Overall Sentiment -->
+                    <div class="mb-3">
+                        <strong>Overall Sentiment:</strong>
+                        <span class="badge {% if review.sentiment_label == 'positive' %}bg-success{% elif review.sentiment_label == 'negative' %}bg-danger{% else %}bg-warning{% endif %}">
+                            {{ review.sentiment_label|title }} ({{ "%.1f"|format(review.sentiment_score*100) }}%)
+                        </span>
+                    </div>
+
+                    <!-- Aspect Analysis -->
+                    <div class="aspect-analysis">
+                        <strong>Aspect Analysis:</strong>
+                        <ul class="list-unstyled mt-2">
+                        {% for aspect in review.aspects %}
+                            <li class="mb-2 border-start ps-2 border-3 {% if aspect.sentiment == 'positive' %}border-success{% elif aspect.sentiment == 'negative' %}border-danger{% else %}border-warning{% endif %}">
+                                <div class="d-flex align-items-center">
+                                    <span class="me-2 fw-bold">{{ aspect.aspect }}:</span>
+                                    <span class="badge {% if aspect.sentiment == 'positive' %}bg-success{% elif aspect.sentiment == 'negative' %}bg-danger{% else %}bg-warning{% endif %}">
+                                        {{ aspect.sentiment|title }} ({{ "%.1f"|format(aspect.confidence*100) }}%)
+                                    </span>
+                                </div>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="mt-3 text-muted">
+                        <small>Posted on {{ review.created_date.strftime('%Y-%m-%d') }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

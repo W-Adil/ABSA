@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Submit Review{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Submit a Review</h2>
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="product_name" class="form-label">Product Name</label>
+                        <input type="text" class="form-control" id="product_name" name="product_name" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="review_text" class="form-label">Review</label>
+                        <textarea class="form-control" id="review_text" name="review_text" rows="5" ></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="review_file" class="form-label">Upload Review File (Optional, .txt only)</label>
+                        <input type="file" class="form-control" id="review_file" name="review_file" accept=".txt">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

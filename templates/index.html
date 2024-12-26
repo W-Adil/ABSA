@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Hero Section -->
+    <div class="px-4 py-5 my-5 text-center">
+        <h1 class="display-4 fw-bold">Product Review Sentiment Analysis</h1>
+        <div class="col-lg-8 mx-auto">
+            <p class="lead mb-4">
+                Discover the power of AI-driven sentiment analysis using Azure's Language Service
+            </p>
+            {% if not current_user.is_authenticated %}
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg px-4 gap-3">Get Started</a>
+                <a href="{{ url_for('login') }}" class="btn btn-outline-secondary btn-lg px-4">Login</a>
+            </div>
+            {% else %}
+            <a href="{{ url_for('submit_review') }}" class="btn btn-primary btn-lg px-4">Submit a Review</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- What is Sentiment Analysis -->
+    <div class="row g-4 py-5">
+        <div class="col-12">
+            <h2 class="pb-2 border-bottom">What is Sentiment Analysis?</h2>
+            <div class="row g-4 py-3">
+                <div class="col-md-6">
+                    <p>
+                        Sentiment analysis is a natural language processing (NLP) technique that determines whether data is positive, negative, or neutral. It helps businesses:
+                    </p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">✓ Monitor brand reputation</li>
+                        <li class="mb-2">✓ Process customer feedback at scale</li>
+                        <li class="mb-2">✓ Identify customer pain points</li>
+                        <li class="mb-2">✓ Improve products and services</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h5 class="card-title">Example Analysis</h5>
+                            <p class="text-success">"The product exceeded my expectations!" → Positive (95%)</p>
+                            <p class="text-danger">"Delivery was delayed and item was damaged." → Negative (88%)</p>
+                            <p class="text-warning">"It works as advertised." → Neutral (75%)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Our Technology -->
+    <div class="row g-4 py-5">
+        <div class="col-12">
+            <h2 class="pb-2 border-bottom">Our Technology Stack</h2>
+            <div class="row g-4 py-3">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Azure AI Language Service</h5>
+                            <p class="card-text">
+                                We use Microsoft's state-of-the-art language models to analyze sentiment with high accuracy. Azure's AI services process text in real-time to determine emotional tone and intensity.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Flask Web Framework</h5>
+                            <p class="card-text">
+                                Built with Python's Flask framework, our application provides a secure and responsive platform for submitting and analyzing reviews. Features include user authentication and real-time analysis.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Secure Database</h5>
+                            <p class="card-text">
+                                All reviews and analysis results are stored securely in our database, allowing you to track sentiment trends and access historical data at any time.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="row g-4 py-5">
+        <div class="col-12">
+            <h2 class="pb-2 border-bottom">How It Works</h2>
+            <div class="row g-4 py-3">
+                <div class="col-12">
+                    <div class="steps d-flex flex-column flex-md-row justify-content-between">
+                        <div class="step text-center px-3">
+                            <div class="step-number mb-3">1</div>
+                            <h5>Submit Review</h5>
+                            <p>Enter your product review text in our simple form</p>
+                        </div>
+                        <div class="step text-center px-3">
+                            <div class="step-number mb-3">2</div>
+                            <h5>AI Analysis</h5>
+                            <p>Azure AI processes the text in real-time</p>
+                        </div>
+                        <div class="step text-center px-3">
+                            <div class="step-number mb-3">3</div>
+                            <h5>Get Results</h5>
+                            <p>View detailed sentiment analysis results instantly</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .step-number {
+        width: 40px;
+        height: 40px;
+        background-color: #0d6efd;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
